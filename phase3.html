@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Collective — Level 1 Workflow · Phase 3</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+  :root {
+
+    --cream: #FAF7F2;
+
+    --warm-white: #FFFEFB;
+
+    --ink: #1C1917;
+
+    --ink-light: #44403C;
+
+    --ink-muted: #78716C;
+
+    --green: #0A7E6E;
+
+    --green-light: #E8F5F2;
+
+    --green-mid: #B8DDD7;
+
+    --gold: #C9963A;
+
+    --gold-light: #FDF3E3;
+
+    --border: #E7E2DA;
+
+    --teal-fill: #E8F5F2;
+
+    --teal-stroke: #B8DDD7;
+
+    --teal-text: #0A7E6E;
+
+    --purple-fill: #F5F3FF;
+
+    --purple-stroke: #DDD6FE;
+
+    --purple-text: #5B21B6;
+
+    --gray-fill: #F5F4F1;
+
+    --gray-stroke: #D6D3CD;
+
+    --gray-text: #44403C;
+
+    --outcome-bg: #0A7E6E;
+
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+
+    background: var(--cream);
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-weight: 300;
+
+    color: var(--ink);
+
+    padding: 48px 40px 80px;
+
+    min-height: 100vh;
+
+  }
+
+  .header {
+
+    max-width: 860px;
+
+    margin: 0 auto 40px;
+
+  }
+
+  .eyebrow {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    color: var(--green);
+
+    margin-bottom: 10px;
+
+  }
+
+  h1 {
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+    color: var(--ink);
+
+    line-height: 1.25;
+
+    margin-bottom: 6px;
+
+  }
+
+  h1 em { font-style: italic; color: var(--green); }
+
+  .subtitle {
+
+    font-size: 13px;
+
+    color: var(--ink-muted);
+
+    font-weight: 300;
+
+  }
+
+  /* LEGEND */
+
+  .legend {
+
+    max-width: 860px;
+
+    margin: 0 auto 36px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px 20px;
+
+    padding: 12px 18px;
+
+    background: var(--warm-white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    align-items: center;
+
+  }
+
+  .legend-title {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    color: var(--ink-muted);
+
+    margin-right: 8px;
+
+  }
+
+  .legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 11.5px;
+
+    color: var(--ink-light);
+
+  }
+
+  .leg-dot {
+
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 3px;
+
+    flex-shrink: 0;
+
+  }
+
+  .leg-teal   { background: var(--teal-fill); border: 1.5px solid var(--teal-stroke); }
+
+  .leg-purple { background: var(--purple-fill); border: 1.5px solid var(--purple-stroke); }
+
+  .leg-gray   { background: var(--gray-fill); border: 1.5px solid var(--gray-stroke); }
+
+  .leg-green  { background: var(--outcome-bg); border: 1.5px solid var(--green); border-radius: 3px; }
+
+  /* FLOW CANVAS */
+
+  .flow {
+
+    max-width: 860px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 0;
+
+  }
+
+  /* PHASE HEADER */
+
+  .phase-header {
+
+    align-self: stretch;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 28px 0 16px;
+
+  }
+
+  .phase-header:first-child { margin-top: 0; }
+
+  .phase-label {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: var(--ink-muted);
+
+    white-space: nowrap;
+
+  }
+
+  .phase-line {
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
+
+  }
+
+  /* NODES */
+
+  .node {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    position: relative;
+
+  }
+
+  .node-title {
+
+    font-size: 12.5px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    margin-bottom: 2px;
+
+  }
+
+  .node-sub {
+
+    font-size: 11px;
+
+    font-weight: 300;
+
+    line-height: 1.5;
+
+    color: inherit;
+
+    opacity: 0.75;
+
+  }
+
+  .node-teal   { background: var(--teal-fill);  border: 1.5px solid var(--teal-stroke); }
+
+  .node-teal .node-title { color: var(--teal-text); }
+
+  .node-teal .node-sub   { color: var(--teal-text); }
+
+  .node-purple { background: var(--purple-fill); border: 1.5px solid var(--purple-stroke); }
+
+  .node-purple .node-title { color: var(--purple-text); }
+
+  .node-purple .node-sub   { color: var(--purple-text); }
+
+  .node-gray   { background: var(--gray-fill);   border: 1.5px solid var(--gray-stroke); }
+
+  .node-gray .node-title { color: var(--gray-text); }
+
+  .node-gray .node-sub   { color: var(--gray-text); }
+
+  .node-outcome {
+
+    background: var(--outcome-bg);
+
+    border: none;
+
+    border-radius: 8px;
+
+  }
+
+  .node-outcome .node-title { color: #fff; font-size: 13px; }
+
+  .node-outcome .node-sub   { color: rgba(255,255,255,0.75); }
+
+  /* APPS SCRIPT GROUP */
+
+  .apps-script-group {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    border: 1.5px solid var(--teal-stroke);
+
+    border-radius: 10px;
+
+    background: var(--warm-white);
+
+    overflow: hidden;
+
+  }
+
+  .apps-script-header {
+
+    background: var(--teal-fill);
+
+    padding: 8px 16px;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+
+    color: var(--teal-text);
+
+  }
+
+  .apps-script-step {
+
+    padding: 10px 16px;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+  }
+
+  .apps-script-step:first-of-type { border-top: none; }
+
+  .step-number {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 10px;
+
+    color: var(--teal-text);
+
+    line-height: 1;
+
+    flex-shrink: 0;
+
+    width: 18px;
+
+    margin-top: 2px;
+
+    opacity: 0.6;
+
+  }
+
+  .step-content .step-title {
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: var(--ink);
+
+    margin-bottom: 2px;
+
+  }
+
+  .step-content .step-sub {
+
+    font-size: 11px;
+
+    font-weight: 300;
+
+    color: var(--ink-muted);
+
+    line-height: 1.5;
+
+  }
+
+  /* CONNECTOR */
+
+  .connector {
+
+    width: 1px;
+
+    height: 24px;
+
+    background: var(--border);
+
+    position: relative;
+
+    flex-shrink: 0;
+
+  }
+
+  .connector::after {
+
+    content: '';
+
+    position: absolute;
+
+    bottom: -4px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 0; height: 0;
+
+    border-left: 4px solid transparent;
+
+    border-right: 4px solid transparent;
+
+    border-top: 5px solid var(--border);
+
+  }
+
+  .connector-green { background: var(--green-mid); }
+
+  .connector-green::after { border-top-color: var(--green-mid); }
+
+  /* ANNOTATED ROW */
+
+  .annotated {
+
+    width: 100%;
+
+    max-width: 860px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 320px;
+
+    gap: 20px;
+
+    align-items: center;
+
+  }
+
+  .annotated-node-col {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+  .annotation {
+
+    padding: 10px 14px;
+
+    background: var(--warm-white);
+
+    border: 1px solid var(--border);
+
+    border-left: 3px solid var(--green-mid);
+
+    border-radius: 0 6px 6px 0;
+
+    font-size: 11px;
+
+    color: var(--ink-muted);
+
+    line-height: 1.6;
+
+  }
+
+  .annotation strong {
+
+    font-weight: 500;
+
+    color: var(--ink-light);
+
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-size: 10px;
+
+    font-family: 'DM Mono', monospace;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+  }
+
+  /* MERGE / CONTINUE */
+
+  .merge-note {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    color: var(--green);
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    padding: 5px 12px;
+
+    border: 1px solid var(--green-mid);
+
+    border-radius: 20px;
+
+    background: var(--green-light);
+
+    margin: 4px 0;
+
+  }
+
+  .continue-badge {
+
+    margin-top: 24px;
+
+    padding: 8px 16px;
+
+    background: var(--warm-white);
+
+    border: 1px dashed var(--border);
+
+    border-radius: 20px;
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    color: var(--ink-muted);
+
+    letter-spacing: 0.1em;
+
+    text-align: center;
+
+  }
+
+  /* FORK — two-path split */
+
+  .fork {
+
+    width: 100%;
+
+    max-width: 860px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+  }
+
+  .fork-col {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 0;
+
+  }
+
+  .fork-label {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.1em;
+
+    padding: 4px 0;
+
+    color: var(--ink-muted);
+
+  }
+
+  .fork-label.l1 { color: var(--teal-text); }
+
+  .fork-label.l2 { color: var(--purple-text); }
+
+  /* FOOTER */
+
+  .footer {
+
+    max-width: 860px;
+
+    margin: 40px auto 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+  }
+
+  .footer span {
+
+    font-family: 'DM Mono', monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0.1em;
+
+    color: var(--ink-muted);
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+  <div class="eyebrow">The Collective · MVP v2 · Level 1 Workflow</div>
+
+  <h1>Phase 3 — <em>Processing &amp; logging</em></h1>
+
+  <div class="subtitle">Make.com → doGet → doPost → Apps Script → learning_log · activity_tracker</div>
+
+</div>
+
+<div class="legend">
+
+  <span class="legend-title">Key —</span>
+
+  <div class="legend-item"><div class="leg-dot leg-teal"></div> System / API action</div>
+
+  <div class="legend-item"><div class="leg-dot leg-purple"></div> Teacher-facing interaction</div>
+
+  <div class="legend-item"><div class="leg-dot leg-gray"></div> Neutral / state</div>
+
+  <div class="legend-item"><div class="leg-dot leg-green"></div> Value outcome</div>
+
+</div>
+
+<div class="flow">
+
+  <!-- PHASE 3 -->
+
+  <div class="phase-header">
+
+    <span class="phase-label">Phase 3 — Make.com processing</span>
+
+    <div class="phase-line"></div>
+
+  </div>
+
+  <!-- Step 1: Receive + identify -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-teal">
+
+        <div class="node-title">Make.com receives media</div>
+
+        <div class="node-sub">Calls doGet?phone=+5511... · Apps Script scans all group_profile tabs · matches B10 · returns teacher_id + group_id</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Phone lookup</strong>
+
+      Teacher is identified by their WhatsApp number, not a login. Apps Script scans every group_profile_* tab looking for a match in cell B10.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Step 2: 2 button questions -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-purple">
+
+        <div class="node-title">Teacher confirms child + lesson stage</div>
+
+        <div class="node-sub">2 button taps · which child? · which lesson stage?</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Teacher-facing</strong>
+
+      Two interactions total. Button labels are drawn from the student list in the group profile — the teacher never types a name.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Step 3: Optional voice note -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-purple">
+
+        <div class="node-title">Optional: voice note or short text</div>
+
+        <div class="node-sub">Anything about this moment worth remembering · teacher can skip</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Teacher-facing</strong>
+
+      If audio is sent, Make.com transcribes via OpenAI Whisper. Stored as teacher_notes in the learning_log row and used as context in the Level 2 DIE reflection.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Step 4: File handling -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-teal">
+
+        <div class="node-title">Make.com downloads + renames + uploads</div>
+
+        <div class="node-sub">WhatsApp URL expires ~5 min · renamed Ang_CT_0704.mp4 · uploaded to evidence folder in Google Drive</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>File naming</strong>
+
+      Format: student_id_lessonstagecode_ddmm.ext. Lesson stage codes (CT, FT, ST etc.) are defined per teacher in their group profile tab.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Step 5: doPost L1 -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-teal">
+
+        <div class="node-title">Make.com calls doPost — L1 payload</div>
+
+        <div class="node-sub">teacher_id · group_id · student_id · date · lesson_stage · files link · teacher_notes</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Payload</strong>
+
+      DIE columns (LO_code, describe, interpret, evaluate, assessment) are not included. Apps Script leaves them blank — they are filled later if the teacher completes a Level 2 reflection.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Apps Script group -->
+
+  <div class="phase-header">
+
+    <span class="phase-label">Apps Script runs in sequence</span>
+
+    <div class="phase-line"></div>
+
+  </div>
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="apps-script-group">
+
+        <div class="apps-script-header">Apps Script — 4 sequential operations</div>
+
+        <div class="apps-script-step">
+
+          <div class="step-number">01</div>
+
+          <div class="step-content">
+
+            <div class="step-title">Appends row to learning_log</div>
+
+            <div class="step-sub">DIE columns G, I, J, K, L left blank. One row per capture. Timestamp auto-written.</div>
+
+          </div>
+
+        </div>
+
+        <div class="apps-script-step">
+
+          <div class="step-number">02</div>
+
+          <div class="step-content">
+
+            <div class="step-title">Writes U to activity_tracker</div>
+
+            <div class="step-sub">U = upload. Written against today's date in teacher's column. Flags if 3 or more consecutive school days show zero activity.</div>
+
+          </div>
+
+        </div>
+
+        <div class="apps-script-step">
+
+          <div class="step-number">03</div>
+
+          <div class="step-content">
+
+            <div class="step-title">Increments observation count</div>
+
+            <div class="step-sub">Student × lesson stage matrix. Cell colour darkens with each entry — coverage gaps visible at a glance without querying.</div>
+
+          </div>
+
+        </div>
+
+        <div class="apps-script-step">
+
+          <div class="step-number">04</div>
+
+          <div class="step-content">
+
+            <div class="step-title">Checks and awards badges</div>
+
+            <div class="step-sub">e.g. 1st Upload, Full Coverage, 5-Day Streak. Badge name + date written to group_profile tab.</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Apps Script</strong>
+
+      All four operations run on a single doPost call. No round-trips. Each is scoped by teacher_id — no operation touches another teacher's data.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Response -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-teal">
+
+        <div class="node-title">Apps Script returns response</div>
+
+        <div class="node-sub">Status · observation count · badges awarded · top 3 coverage gaps (live scan — not stored)</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Coverage gaps</strong>
+
+      Calculated fresh from the learning_log on every doPost response. Never written to the sheet. Make.com reads them from the response payload only.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Confirmation message -->
+
+  <div class="annotated">
+
+    <div class="annotated-node-col">
+
+      <div class="node node-purple">
+
+        <div class="node-title">Make.com sends confirmation to teacher</div>
+
+        <div class="node-sub">"Tagged and added to your Learning Log." · any new badges included</div>
+
+      </div>
+
+    </div>
+
+    <div class="annotation">
+
+      <strong>Teacher-facing</strong>
+
+      Confirmation is the teacher's reward signal for this capture. Badge notifications are included inline if earned. No separate message.
+
+    </div>
+
+  </div>
+
+  <div class="connector connector-green"></div>
+
+  <!-- Fork: L1 loop / L2 begins -->
+
+  <div class="phase-header">
+
+    <span class="phase-label">End of loop — two paths</span>
+
+    <div class="phase-line"></div>
+
+  </div>
+
+  <div class="fork">
+
+    <div class="fork-col">
+
+      <div class="fork-label l1">L1 teacher (or teacher ignores GPT link)</div>
+
+      <div class="connector"></div>
+
+      <div class="node node-gray" style="max-width:100%; width:100%;">
+
+        <div class="node-title">Loop ends for today</div>
+
+        <div class="node-sub">Repeats from Phase 1 the following school day. No further prompts today.</div>
+
+      </div>
+
+    </div>
+
+    <div class="fork-col">
+
+      <div class="fork-label l2">L2 teacher (Level 2 Ready badge earned)</div>
+
+      <div class="connector connector-green"></div>
+
+      <div class="node node-teal" style="max-width:100%; width:100%;">
+
+        <div class="node-title">GPT link included in confirmation</div>
+
+        <div class="node-sub">Teacher opens when ready. Level 2 DIE reflection begins. Nothing is time-pressured.</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="height:24px;"></div>
+
+  <!-- Outcome -->
+
+  <div class="node node-outcome" style="max-width:460px;">
+
+    <div class="node-title">L1 row complete in learning_log</div>
+
+    <div class="node-sub">Evidence captured · observation count updated · activity logged · badges checked</div>
+
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="merge-note">↓ continues: Level 2 · Phase 4 — DIE reflection via Custom GPT</div>
+
+  <div class="continue-badge">Level 2 covers: GPT identification · group profile load · DIE reflection · doPost · L2 logging</div>
+
+</div>
+
+<div class="footer">
+
+  <span>The Collective · MVP v2 · Internal</span>
+
+  <span>Level 1 · Phase 3 · March 2026</span>
+
+</div>
+
+</body>
+
+</html>
